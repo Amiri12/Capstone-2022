@@ -6,7 +6,7 @@ MotorArm::MotorArm(int pA, int pB){
   pinB = pB;
   s = 0;
   stime = 0;
-  running = flase;
+  running = false;
   pinMode(pinA, OUTPUT);
   pinMode(pinB, OUTPUT);
   digitalWrite(pinA, LOW);
@@ -16,6 +16,7 @@ MotorArm::MotorArm(int pA, int pB){
 
 void MotorArm::start(int sp){
   s = sp;
+  running = true;
   if(s > 0){
     digitalWrite(pinA, HIGH);
     digitalWrite(pinB, LOW);
@@ -29,6 +30,7 @@ void MotorArm::start(int sp){
 }
 
 void MotorArm::Astart(int di, int sp){
+  running = true;
   if(di > 0){
     analogWrite(pinA, sp);
     analogWrite(pinB, 0);
@@ -42,9 +44,17 @@ void MotorArm::Astart(int di, int sp){
 }
 
 void MotorArm::start(int di, int t){
+  int ctime;
   if(!running){
     stime = millis();
-        
+    running = true;
+  }
+  ctime = millis() - stime;
+  if(running && ctime < t){
+    start(di);
+  }
+  if(running && ctime >= t){
+    fStop();
   }
 
 }
@@ -52,11 +62,13 @@ void MotorArm::start(int di, int t){
 void MotorArm::fStop(){
   digitalWrite(pinA, LOW);
   digitalWrite(pinB, LOW);
+running = false;
 }
 
 void MotorArm::aStop(){
   analogWrite(pinA, 0);
   analogWrite(pinB, 0);
+  running = false;
 }
 
 String MotorArm::getPins(){

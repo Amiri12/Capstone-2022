@@ -24,6 +24,7 @@ class MotorArm {
     void start(int, int);
 
     String getPins();
+    bool getRunning();
 };
 
 #endif

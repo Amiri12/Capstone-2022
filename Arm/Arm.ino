@@ -12,12 +12,15 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  M1.start(-1);
-  M2.start(1);
   ctime = millis();
   etime = ctime - time;
-  if(etime = 5000){
+  if(ctime < 1000){
+    M1.start(-1);
+    M2.Astart(1, 225);
+  }
+  if(ctime = 5000){
     M1.fStop();
+    M2.aStop();
     Serial.println("stopping...");
   }
 }

@@ -47,14 +47,20 @@ void MotorArm::start(int di, int t){
   int ctime;
   if(!running){
     stime = millis();
+    Serial.print("start");
     running = true;
   }
   ctime = millis() - stime;
   if(running && ctime < t){
     start(di);
+    Serial.print(ctime);
+    Serial.print("\t");
+    Serial.println("running");
   }
   if(running && ctime >= t){
     fStop();
+    Serial.print(ctime);
+    Serial.print("stopping");
   }
 
 }
@@ -73,4 +79,8 @@ void MotorArm::aStop(){
 
 String MotorArm::getPins(){
   return(pinA + " " + pinB);
+}
+
+bool MotorArm::getRunning(){
+  return(running);
 }

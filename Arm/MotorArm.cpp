@@ -44,7 +44,7 @@ void MotorArm::Astart(int di, int sp){
 }
 
 void MotorArm::start(int di, int t){
-  int ctime;
+  int ctime = millis() - stime;
   if(!running){
     stime = millis();
     Serial.print("start");
@@ -57,7 +57,7 @@ void MotorArm::start(int di, int t){
     Serial.print("\t");
     Serial.println("running");
   }
-  if(running && ctime >= t){
+  if(ctime >= t){
     fStop();
     Serial.print(ctime);
     Serial.print("stopping");
@@ -66,9 +66,10 @@ void MotorArm::start(int di, int t){
 }
 
 void MotorArm::fStop(){
+  running = false;
   digitalWrite(pinA, LOW);
   digitalWrite(pinB, LOW);
-running = false;
+
 }
 
 void MotorArm::aStop(){

@@ -2,6 +2,12 @@
 
 MotorArm M1(10,11);
 MotorArm M2(A0, A1);
+MotorArm M3(9, 8);
+MotorArm M4(10,11);
+MotorArm M5(0, 1);
+MotorArm M6(3, 4);
+MotorArm M7(1, 2);
+MotorArm M8(6, 4);
 int in1;
 int in2;
 int in3;
@@ -13,174 +19,112 @@ void setup() {
 }
 
 void loop() {
-    in1 = analogRead(A2)*1000;
-    in2 = analogRead(A3)*100;
-    in3 = analogRead(A4)*10;
-    in4 = analogRead(A5);
+  if(digitalRead(A2)){
+    in1 = 1000;
+  }else{
+    in1 = 0;
+  }
+  if(digitalRead(A3)){
+    in2 = 100;
+  }else{
+    in2 = 0;
+  }
+  if(digitalRead(A4)){
+    in3 = 10;
+  }else{
+    in3 = 0;
+  }
+  if(digitalRead(A5)){
+    in4 = 1;
+  }else{
+    in4 = 0;
+  }
+    
+    
     nib = in1+in2+in3+in4;
     Serial.println(nib);
     if(nib == 0001){
       M1.start(1);
       M2.start(-1);
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
+      M3.fStop();
+      M4.fStop();
+      M5.fStop();
+      M6.fStop();
+      M7.fStop();
+      M8.fStop();
     }else if(nib == 0010){
-      M1.stop();
-      M2.stop();
+      M1.fStop();
+      M2.fStop();
       M3.start(1);
       M4.start(-1);
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
+      M5.fStop();
+      M6.fStop();
+      M7.fStop();
+      M8.fStop();
     }else if(nib == 0011){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
+      M1.fStop();
+      M2.fStop();
+      M3.fStop();
+      M4.fStop();
       M5.start(1);
       M6.start(-1);
-      M7.stop();
-      M8.stop();
+      M7.fStop();
+      M8.fStop();
     }else if(nib == 0100){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
+      M1.fStop();
+      M2.fStop();
+      M3.fStop();
+      M4.fStop();
+      M5.fStop();
+      M6.fStop();
       M7.start(1);
       M8.start(-1);      
     }else if(nib == 0101){
       M1.start(-1);
       M2.start(1);
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
+      M3.fStop();
+      M4.fStop();
+      M5.fStop();
+      M6.fStop();
+      M7.fStop();
+      M8.fStop();
     }else if(nib == 0110){
-      M1.stop();
-      M2.stop();
+      M1.fStop();
+      M2.fStop();
       M3.start(-1);
       M4.start(1);
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();      
+      M5.fStop();
+      M6.fStop();
+      M7.fStop();
+      M8.fStop();      
     }else if(nib == 0111){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
+      M1.fStop();
+      M2.fStop();
+      M3.fStop();
+      M4.fStop();
       M5.start(-1);
       M6.start(1);
-      M7.stop();
-      M8.stop();
+      M7.fStop();
+      M8.fStop();
     }else if(nib == 1000){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
+      M1.fStop();
+      M2.fStop();
+      M3.fStop();
+      M4.fStop();
+      M5.fStop();
+      M6.fStop();
       M7.start(-1);
       M8.start(1);
     }else if(nib == 0000){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 1){
-      M1.start(in4);
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 2){
-      M1.stop();
-      M2.start(in4));
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 3){
-      M1.stop();
-      M2.stop();
-      M3.start(in4));
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 4){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.start(in4));
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 5){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.start(in4));
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 6){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.start(in4));
-      M7.stop();
-      M8.stop();
-    }else if(in1/1000 == 7){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.start(in4));
-      M8.stop();
-    }else if(in1/1000 == 8){
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.start(in4));      
-    }else{
-      M1.stop();
-      M2.stop();
-      M3.stop();
-      M4.stop();
-      M5.stop();
-      M6.stop();
-      M7.stop();
-      M8.stop();
-    }
+      M1.fStop();
+      M2.fStop();
+      M3.fStop();
+      M4.fStop();
+      M5.fStop();
+      M6.fStop();
+      M7.fStop();
+      M8.fStop();
+
+}
 }
 

@@ -78,8 +78,33 @@ void loop() {
   if(LYO > 150){
     out[0] = 1;
   }else if(LYO < -150){
-    out[0] = -1;
+    out[1] = 1;
   }else{
     out[0] = 0;
+    out[1] = 0;
+  }
+
+  if(out[0] == 1){
+    digitalWrite(11, HIGH);
+  }else{
+    digitalWrite(11, LOW);
+  }
+
+  if(out[1] == 1){
+    digitalWrite(10, HIGH);
+  }else{
+    digitalWrite(10, LOW);
+  }
+
+  if(out[2] == 1){
+    digitalWrite(9, HIGH);
+  }else{
+    digitalWrite(9, LOW);
+  }
+
+  if(out[3] == 1){
+    digitalWrite(8, HIGH);
+  }else{
+    digitalWrite(8, LOW);
   }
 }

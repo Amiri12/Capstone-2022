@@ -1,13 +1,13 @@
 #include "MotorArm.h"
 
-MotorArm M1(10,11);
-MotorArm M2(A0, A1);
-MotorArm M3(9, 8);
-MotorArm M4(10,11);
-MotorArm M5(0, 1);
-MotorArm M6(3, 4);
-MotorArm M7(1, 2);
-MotorArm M8(6, 4);
+MotorArm M1(0,1);
+MotorArm M2(2, 3);
+MotorArm M3(4, 5);
+MotorArm M4(6,7);
+MotorArm M5(8, 9);
+MotorArm M6(10, 11);
+MotorArm M7(12, 13);
+MotorArm M8(A0, A1);
 int in1;
 int in2;
 int in3;
@@ -127,4 +127,6 @@ void loop() {
 
 }
 }
+
+
 

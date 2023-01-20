@@ -20,30 +20,31 @@ void setup() {
 
 void loop() {
   if(digitalRead(A2)){
-    in1 = 1000;
+    in1 = 2000;
   }else{
-    in1 = 0;
+    in1 = 1;
   }
   if(digitalRead(A3)){
-    in2 = 100;
+    in2 = 200;
   }else{
-    in2 = 0;
+    in2 = 1;
   }
   if(digitalRead(A4)){
-    in3 = 10;
+    in3 = 20;
   }else{
-    in3 = 0;
+    in3 = 1;
   }
   if(digitalRead(A5)){
-    in4 = 1;
+    in4 = 2;
   }else{
-    in4 = 0;
+    in4 = 1;
   }
     
     
     nib = in1+in2+in3+in4;
-    Serial.println(nib);
-    if(nib == 0001){
+    
+    if(nib == 5){
+      Serial.print(1);
       M1.start(1);
       M2.start(-1);
       M3.fStop();
@@ -52,7 +53,8 @@ void loop() {
       M6.fStop();
       M7.fStop();
       M8.fStop();
-    }else if(nib == 0010){
+    }else if(nib == 23){
+      Serial.print(2);
       M1.fStop();
       M2.fStop();
       M3.start(1);
@@ -61,7 +63,8 @@ void loop() {
       M6.fStop();
       M7.fStop();
       M8.fStop();
-    }else if(nib == 0011){
+    }else if(nib == 24){
+      Serial.print(3);
       M1.fStop();
       M2.fStop();
       M3.fStop();
@@ -70,7 +73,8 @@ void loop() {
       M6.start(-1);
       M7.fStop();
       M8.fStop();
-    }else if(nib == 0100){
+    }else if(nib == 203){
+      Serial.print(4);
       M1.fStop();
       M2.fStop();
       M3.fStop();
@@ -79,7 +83,8 @@ void loop() {
       M6.fStop();
       M7.start(1);
       M8.start(-1);      
-    }else if(nib == 0101){
+    }else if(nib == 204){
+      Serial.print(5);
       M1.start(-1);
       M2.start(1);
       M3.fStop();
@@ -88,7 +93,8 @@ void loop() {
       M6.fStop();
       M7.fStop();
       M8.fStop();
-    }else if(nib == 0110){
+    }else if(nib == 222){
+      Serial.print(6);
       M1.fStop();
       M2.fStop();
       M3.start(-1);
@@ -97,7 +103,8 @@ void loop() {
       M6.fStop();
       M7.fStop();
       M8.fStop();      
-    }else if(nib == 0111){
+    }else if(nib == 223){
+      Serial.print(7);
       M1.fStop();
       M2.fStop();
       M3.fStop();
@@ -106,7 +113,8 @@ void loop() {
       M6.start(1);
       M7.fStop();
       M8.fStop();
-    }else if(nib == 1000){
+    }else if(nib == 2003){
+      Serial.print(8);
       M1.fStop();
       M2.fStop();
       M3.fStop();
@@ -115,18 +123,35 @@ void loop() {
       M6.fStop();
       M7.start(-1);
       M8.start(1);
-    }else if(nib == 0000){
-      M1.fStop();
-      M2.fStop();
-      M3.fStop();
-      M4.fStop();
-      M5.fStop();
-      M6.fStop();
-      M7.fStop();
-      M8.fStop();
+    }else{
+      Serial.print(0);
+      digitalWrite(0, HIGH);
+      digitalWrite(1, HIGH);
+      digitalWrite(2, LOW);
+      digitalWrite(3, LOW);
+      digitalWrite(4, LOW);
+      digitalWrite(5, LOW);
+      digitalWrite(6, LOW);
+      digitalWrite(8, LOW);
+      digitalWrite(9, LOW);
+      digitalWrite(10, LOW);
+      digitalWrite(11, LOW);
+      digitalWrite(12, LOW);
+      digitalWrite(13, LOW);
+      digitalWrite(A0, LOW);
+      digitalWrite(A1, LOW);
 
+      
+    }
+    Serial.print("\t");
+  Serial.print(in1);
+    Serial.print(in2);
+    Serial.print(in3);
+    Serial.print(in4);
+    Serial.print("\t");
+    Serial.println(nib);
 }
-}
+
 
 
 

@@ -23,7 +23,7 @@
 // These constants won't change. They're used to give names to the pins used:
 const int stickL = A2;
 const int stickR = A0;// Analog input pin that the potentiometer is attached to
-const int M1Pin = 9;
+const int M1Pin = 5;
 const int M2Pin = 10;// Analog output pin that the LED is attached to
 
 int sensorValueL = 0;        // value read from the pot
@@ -35,10 +35,12 @@ int outputValueR = 0;
 void setup() {
   // initialize serial communications at 9600 bps:
   Serial.begin(9600);
+  pinMode(9, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(5, OUTPUT);
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
 }
 
 void loop() {
@@ -65,16 +67,16 @@ void loop() {
   }
 
   if(outputValueR > 25){
-    digitalWrite(5, HIGH);
-    digitalWrite(6, LOW);
+    digitalWrite(8, HIGH);
+    digitalWrite(9, LOW);
     analogWrite(M2Pin, outputValueR);
   } else if(outputValueR < -25){
-    digitalWrite(6, HIGH);
-    digitalWrite(5, LOW);
+    digitalWrite(9, HIGH);
+    digitalWrite(8, LOW);
     analogWrite(M2Pin, -outputValueR);
   }else{
-    digitalWrite(6, HIGH);
-    digitalWrite(5, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(8, HIGH);
     analogWrite(M2Pin, -outputValueR);
   }
 
